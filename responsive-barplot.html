@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Responsive barplot with D3</title>
+<style>
+body{
+	}
+		
+#container{
+	width:50%;
+	margin:40 auto;
+}
+</style>
+</head>
+
+<body>
+<div id="container">
+<div id="bar-plot"></div>
+</div>
+<script src="d3.min.js"></script>
+<script>
+var dataset = [23, 12, 44, 56, 67, 78, 89, 80, 53, 12, 13, 15, 16, 17];
+var	height = 200;
+var width = parseFloat(d3.select("#container").style("width"));
+
+
+
+var xScale = d3.scale.ordinal()
+				.domain(d3.range(dataset.length))
+				.rangeRoundBands([0, width], 0.05);
+
+var yScale = d3.scale.linear()
+				.domain([0, d3.max(dataset)])
+				.range([0, height]);
+
+
+var svg = d3.select("#container")
+			.append("svg")
+			.attr("width", width)
+			.attr("height", height);
+
+var barras = svg.selectAll("rect")
+	.data(dataset)
+	.enter()
+	.append("rect")
+	.attr("x", function(d, i){
+		return xScale(i);
+	})
+	.attr("y", function(d){
+		return height - yScale(d);
+	})
+	.attr("width", xScale.rangeBand())
+	.attr("height", function(d){
+		return yScale(d);
+	})
+	.attr("fill", function(d){
+		return "rgb(0, 0, " + (d * 10) + ")";
+	});
+
+d3.select(window).on('resize', resize); 
+
+function resize(){
+	// Reestablecer el ancho
+	width = parseFloat(d3.select("#container").style("width"));
+
+	// Reestablecer la escala en el eje X.
+	xScale = d3.scale.ordinal()
+				.domain(d3.range(dataset.length))
+				.rangeRoundBands([0, width], 0.05);
+
+	// Reestablecer el ancho del SVG
+
+	svg.attr("width", width);
+
+	// Reestablecer el ancho de las barras y su posición.
+
+	barras
+		.attr("x",  function(d, i){
+		return xScale(i);
+		})
+		.attr("width", xScale.rangeBand());
+
+}
+</script>
+</body>
+
+</html>
