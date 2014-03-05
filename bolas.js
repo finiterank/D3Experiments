@@ -1,4 +1,7 @@
-var archivo = "output.json"
+var archivo = "tekkon.json";
+
+var container = "#container";
+
 d3.json(archivo, function(error, datos) {
 	datos.xdim = +datos.xdim;
 	datos.ydim = +datos.ydim;
@@ -12,7 +15,7 @@ d3.json(archivo, function(error, datos) {
   	var imagewidth = datos.xdim,
 		imageheight = datos.ydim,
 		ballradius = datos.espacio / 2,
-		width = parseFloat(d3.select("#container").style("width")),
+		width = parseFloat(d3.select(container).style("width")),
 		height = width * imageheight / imagewidth;
 
 	var xScale = d3.scale.linear()
@@ -49,7 +52,7 @@ d3.json(archivo, function(error, datos) {
     d3.select(window).on('resize', resize); 
 
 	function resize(){
-		width = parseFloat(d3.select("#container").style("width"));
+		width = parseFloat(d3.select(container).style("width"));
 		height = width * imageheight / imagewidth;
 
 		xScale.range([0, width]);
@@ -73,6 +76,16 @@ d3.json(archivo, function(error, datos) {
 			.duration(1000)
 			.ease("linear")
 			.style("fill-opacity", 1)
-			.style("fill", function(d){ return d.color;});
+			.style("fill", function(d){ return d.color;})
+			.each("end", function(){
+				d3.select(this)
+					.on("mouseover", function(){
+      					d3.select(this).transition().duration(1000).attr("r", 6 * xScale(ballradius));
+      				})
+      				.on("mouseout", function(){
+      					d3.select(this).transition().delay(1000).duration(1200).attr("r", xScale(ballradius));
+      				});
+			});
+
 	}
 });
