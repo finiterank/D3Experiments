@@ -1,16 +1,16 @@
 var url = "tekkon.jpg";
 var img = new Image();
-// img.src = url;
-// img.onload = function(){
-// 	d3.select('#message').style("display", "none");
-// 	main();
-// }
-
-function preloader() {
-	console.log("Preloader():: " + url + " antes de");
-	img.src = url;
-	console.log("Preloader():: " + url + " después de");
+img.src = url;
+img.onload = function(){
+	d3.select('#message').style("display", "none");
+ 	main();
 }
+
+// function preloader() {
+// 	console.log("Preloader():: " + url + " antes de");
+// 	img.src = url;
+// 	console.log("Preloader():: " + url + " después de");
+// }
 
 function main(){
 	var context = document.getElementById('hidden-canvas').getContext('2d');
@@ -139,12 +139,12 @@ function main(){
 }
 
 //when everything is ready
-$(document).ready(function(){
-	if ( window.console && window.console.log ) {
-	  console.log("Init:: vamos a hacer logs!");
-	}
-	preloader();
-	console.log("Init:: Ya hizo el preloader");
-	d3.select('#message').style("display", "none");
-	main();
-});
+// $(document).ready(function(){
+// 	if ( window.console && window.console.log ) {
+// 	  console.log("Init:: vamos a hacer logs!");
+// 	}
+// 	preloader();
+// 	console.log("Init:: Ya hizo el preloader");
+// 	d3.select('#message').style("display", "none");
+// 	main();
+// });
