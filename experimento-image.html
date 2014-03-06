@@ -14,15 +14,16 @@
 <script>
 
 var url = "tekkon.jpg";
+var img;
 
 function preloader() 
 {
-var img = new Image();
+img = new Image();
 img.src = url;
 }
 
-var img = new Image();
-img.src = url;
+//var img = new Image();
+//img.src = url;
 
 var context = document.getElementById('hidden-canvas').getContext('2d');
 
