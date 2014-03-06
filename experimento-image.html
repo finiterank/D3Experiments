@@ -12,6 +12,7 @@
 
 <script src="d3.min.js"></script>
 <script>
+
 var url = "tekkon.jpg";
 var img = new Image();
 img.src = url;
@@ -113,6 +114,7 @@ function resize(){
 	}
 
 function transformer(){
+	puntos.data(datos.tabla)
 		.transition()
 		.delay(function(d,i){return i * 1;})
 		.duration(1000)
