@@ -6,6 +6,7 @@
 </head>
 <body>
 <canvas id="hidden-canvas"></canvas>
+<div id="message">Imagen cargando...</div>
 <div id="container">
 <div id="foto"></div>
 </div>
@@ -17,8 +18,10 @@ var url = "tekkon.jpg";
 
 var img = new Image();
 img.src = url;
-img.onload = main();
-
+img.onload = function(){
+	d3.select('#message').style("display", "none");
+	main();
+}
 
 function main(){
 	var context = document.getElementById('hidden-canvas').getContext('2d');
@@ -129,10 +132,17 @@ function main(){
 			.each("end", function(){
 				d3.select(this)
 					.on("mouseover", function(){
-      					d3.select(this).transition().duration(1000).attr("r", 6 * xScale(ballradius));
+      					d3.select(this)
+      						.transition()
+      						.duration(1000)
+      						.attr("r", 6 * xScale(ballradius));
       				})
       				.on("mouseout", function(){
-      					d3.select(this).transition().delay(1000).duration(1200).attr("r", xScale(ballradius));
+      					d3.select(this)
+      						.transition()
+      						.delay(1000)
+      						.duration(1200)
+      						.attr("r", xScale(ballradius));
       				});
       			});
 
