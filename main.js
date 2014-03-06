@@ -7,9 +7,9 @@ var img = new Image();
 // }
 
 function preloader() {
-	console.log("Preloader():: " + myUrl + " antes de");
+	console.log("Preloader():: " + url + " antes de");
 	img.src = url;
-	console.log("Preloader():: " + myUrl + " después de");
+	console.log("Preloader():: " + url + " después de");
 }
 
 function main(){
