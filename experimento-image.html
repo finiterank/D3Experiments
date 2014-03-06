@@ -4,7 +4,7 @@
 #hidden-canvas{display:none;}
 </style>
 </head>
-<body>
+<body onLoad="javascript:preloader()">
 <canvas id="hidden-canvas"></canvas>
 <div id="container">
 <div id="foto"></div>
@@ -14,9 +14,15 @@
 <script>
 
 var url = "tekkon.jpg";
+
+function preloader() 
+{
 var img = new Image();
 img.src = url;
+}
 
+var img = new Image();
+img.src = url;
 
 var context = document.getElementById('hidden-canvas').getContext('2d');
 
