@@ -116,8 +116,6 @@ function main(){
 	function transformer(h){
 		puntos
 			.sort(function(a,b){
-			//var centrox = esp * Math.floor(w/esp/2);
-		 	//var centroy = esp * Math.floor(h/esp/2);
 		 	var centro = {"x": h.x, "y": h.y};
 		 	return orderDistancia(a, b, centro);
 			})
@@ -129,22 +127,35 @@ function main(){
 			.attr("r", xScale(ballradius))
 			.style("fill-opacity", 1)
 			.style("fill", function(d){ return d.color;})
-			// .each("end", function(){
-			// 	d3.select(this)
-			// 		.on("mouseover", function(){
-   //    					d3.select(this)
-   //    						.transition()
-   //    						.duration(1000)
-   //    						.attr("r", 6 * xScale(ballradius));
-   //    				})
-   //    				.on("mouseout", function(){
-   //    					d3.select(this)
-   //    						.transition()
-   //    						.delay(1000)
-   //    						.duration(1200)
-   //    						.attr("r", xScale(ballradius));
-   //    				});
-   //    		});
+			.each("end", function(){
+			   	d3.select(this)
+			   		.on("mouseover", function(h){
+         					console.log(h.x, h.y);
+        			        d3.selectAll(".colordot")
+        			        	.filter(function(g){
+        			        		return distanciaCuadradaPunto(h,g) <= Math.pow(esp * 15, 2);
+        			        	})
+        			        	.transition()
+   	    						.duration(1000)
+        			        	.attr("r",  function(d){
+      								var col = d3.rgb(d.color);
+	    							var factor = colScale((0.3 * col.r) + (0.6 * col.g) + (0.11 * col.b));
+      								return factor * xScale(ballradius);
+      							})
+         						.style("fill", "#000");
 
+         			})
+    				.on("mouseout", function(h){
+    						d3.selectAll(".colordot")
+    						    .filter(function(g){
+        			        		return distanciaCuadradaPunto(h,g) <= Math.pow(esp * 15, 2);
+        			        	})
+    						.transition()
+    						.delay(1000)
+    						.duration(1200)
+    						.style("fill", function(d){ return d.color;})
+    						.attr("r", xScale(ballradius));
+    				});
+			 });
 	}
 }
