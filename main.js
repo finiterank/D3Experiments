@@ -145,5 +145,6 @@ $(document).ready(function(){
 	}
 	preloader();
 	console.log("Init:: Ya hizo el preloader");
+	d3.select('#message').style("display", "none");
 	main();
 });
