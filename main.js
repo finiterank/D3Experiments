@@ -136,7 +136,7 @@ function main(){
         			        		return distanciaCuadradaPunto(h,g) <= Math.pow(esp * 15, 2);
         			        	})
         			        	.transition()
-   	    						.duration(1000)
+   	    						.duration(2000)
         			        	.attr("r",  function(d){
       								var col = d3.rgb(d.color);
 	    							var factor = colScale((0.3 * col.r) + (0.6 * col.g) + (0.11 * col.b));
