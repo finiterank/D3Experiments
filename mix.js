@@ -1,6 +1,6 @@
-var urluno = "colgantes.jpg";
-var urldos = "otratekkon.jpg";
-var esp = 20;
+var urluno = "amanecer.jpg";
+var urldos = "javier.jpg";
+var esp = 9;
 var imguno = new Image(),
 	imgdos = new Image();
 imguno.src = urluno;
