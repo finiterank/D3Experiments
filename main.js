@@ -1,5 +1,5 @@
-var url = "tekkon.jpg";
-var esp = 20;
+var url = "hojas.jpg";
+var esp;
 var img = new Image();
 img.src = url;
 img.onload = function(){
@@ -19,8 +19,14 @@ function main(){
 	var w = img.width;
 	var	h = img.height;
 
+	if (w >= h){
+		esp = Math.floor(h / 100);
+	}
+	else{
+		esp = Math.floor(w / 100);
+	}
 
-	console.log(w, h);
+	// console.log(w, h);
 
 	var tabla = [];
 
