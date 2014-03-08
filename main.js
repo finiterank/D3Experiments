@@ -1,4 +1,4 @@
-var url = "hojas.jpg";
+var url = "carolina.jpg";
 var esp;
 var img = new Image();
 img.src = url;
@@ -87,17 +87,17 @@ function main(){
       		.attr("cx", function(d) { return xScale(d.x); })
       		.attr("cy", function(d) { return yScale(d.y); })
       		.style("fill-opacity", 1)
-      		.style("fill", "#000000") 
+      		.style("fill", "#000000")
       		.style("stroke-width", 0)
       		.on("click", function(d){transformer(d);});
 
-	d3.select(window).on('resize', resize); 
+	d3.select(window).on('resize', resize);
 
 	function resize(){
 		width = parseFloat(d3.select(container).style("width"));
 		height = width * imageheight / imagewidth;
 
-		xScale.range([0, width]);	
+		xScale.range([0, width]);
 		yScale.range([0, height]);
 
 		svg
